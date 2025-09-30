@@ -1,6 +1,6 @@
-# alexhernandezagoumi index
-Spanish Alex's Portfolio -> https://alexhernandezagoumi.github.io/portfolio/es_portfolio.html
+# alexhernandezagoumi Index
+Spanish Alex's Portfolio -> <a href="https://alexhernandezagoumi.github.io/portfolio/es_portfolio.html">es_portfolio.html</a>
 
-English Alex's Portfolio -> https://alexhernandezagoumi.github.io/portfolio/en_portfolio.html
+English Alex's Portfolio -> <a href="https://alexhernandezagoumi.github.io/portfolio/en_portfolio.html">en_portfolio.html</a>
 
-Alex's TryHackme -> https://tryhackme.com/p/AlexHernandez
+Alex's TryHackme -> <a href="https://tryhackme.com/p/AlexHernandez">My TryHackMe</a>
