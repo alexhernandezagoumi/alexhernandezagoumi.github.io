@@ -4,206 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Alex Ihssan Hernández Agoumi — Interactive CV</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-  <style>
-    :root {
-      --bg: #0f1724;
-      --bg-gradient-start: #071023;
-      --bg-gradient-end: #0f1724;
-      --card: #0b1220;
-      --text-main: #e6eef8;
-      --text-header: #dbeafe;
-      --muted: #9aa4b2;
-      --accent: #4f46e5;
-      --glass: rgba(255, 255, 255, 0.04);
-      --glass-2: rgba(255, 255, 255, 0.03);
-      --success: #10b981;
-      --shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
-      --shadow-hover: 0 10px 35px rgba(2, 6, 23, 0.7);
-      --border-color: rgba(255, 255, 255, 0.04);
-    }
-
-    body.light-theme {
-      --bg: #f6f8fb;
-      --bg-gradient-start: #f8fafc;
-      --bg-gradient-end: #f6f8fb;
-      --card: #ffffff;
-      --text-main: #334155;
-      --text-header: #1e293b;
-      --muted: #64748b;
-      --accent: #4f46e5;
-      --glass: rgba(0, 0, 0, 0.03);
-      --glass-2: rgba(0, 0, 0, 0.04);
-      --success: #10b981;
-      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      --shadow-hover: 0 10px 35px rgba(0, 0, 0, 0.12);
-      --border-color: rgba(0, 0, 0, 0.08);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: Inter, system-ui, Arial;
-      margin: 0;
-      background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-      color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    a { color: var(--accent); text-decoration: none; }
-    
-    header { position: static; display: flex; justify-content: center; }
-    
-    .topbar {
-      width: min(1100px, 94%);
-      background: var(--card);
-      border-radius: 12px;
-      padding: 10px 16px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      box-shadow: var(--shadow);
-      margin-top: 20px;
-      transition: background 0.3s ease;
-    }
-
-    .brand { display: flex; gap: 12px; align-items: center; }
-    .logo { width: 46px; height: 46px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), #06b6d4); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; }
-    .brand h1 { font-size: 16px; margin: 0; color: var(--text-header); }
-    .brand div > div { color: var(--muted); }
-    
-    .nav { margin-left: auto; display: flex; gap: 8px; align-items: center; }
-    
-    .chip {
-      background: var(--glass);
-      color: var(--muted);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s ease;
-    }
-    .chip:hover { background: var(--glass-2); }
-    .chip i { font-size: 1.2em; }
-
-    main { width: min(1100px, 94%); margin: 28px auto 80px; display: grid; grid-template-columns: 360px 1fr; gap: 22px; }
-
-    .sidebar { border-radius: 14px; padding: 20px; }
-
-    .photo { width: 120px; height: 120px; border-radius: 20px; overflow: hidden; border: 4px solid var(--border-color); margin: 0 auto 14px; display: block; }
-    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    
-    .title { text-align: center; }
-    .title h2 { margin: 8px 0 4px; font-size: 18px; color: var(--text-header); }
-    .title p { margin: 0; color: var(--muted); font-size: 13px; }
-    
-    .contact { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
-    .contact .row { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
-    .contact .row i { font-size: 18px; color: var(--accent); }
-    
-    .btn {
-      background: linear-gradient(90deg, var(--accent), #06b6d4);
-      color: white;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
-
-    .small { font-size: 13px; }
-
-    .card {
-      background: var(--card);
-      padding: 18px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      transition: background 0.3s ease;
-    }
-
-    h3, h4 { color: var(--text-header); transition: color 0.3s ease; }
-    h3 { margin: 0 0 12px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
-    h3 i { color: var(--accent); }
-    
-    p.lead { color: var(--muted); margin: 0 0 8px; }
-
-    .skills { display: grid; gap: 10px; }
-    .skill .meta { flex: 1; }
-    .skill strong { color: var(--text-header); }
-    
-    .bar { height: 8px; background: var(--glass-2); border-radius: 999px; overflow: hidden; }
-    .bar > i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #22c1c3); width: 0%; border-radius: 999px; transition: width 900ms cubic-bezier(.2, .9, .2, 1); }
-    
-    .skills-detailed ul {
-        list-style: none;
-        padding-left: 0;
-        margin-top: 6px;
-        font-size: 14px;
-        color: var(--muted);
-    }
-    .skills-detailed ul li {
-        margin-bottom: 8px;
-        display: flex;
-        align-items: flex-start;
-    }
-    .skills-detailed ul li::before {
-        content: '✓';
-        color: var(--accent);
-        font-weight: bold;
-        margin-right: 10px;
-        margin-top: 1px;
-    }
-    
-    .search { flex: 1; padding: 10px 12px; border-radius: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--muted); }
-    
-    .grid-cert { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .cert {
-      padding: 14px;
-      border-radius: 10px;
-      background: var(--glass);
-      border-left: 4px solid var(--accent);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-      cursor: default;
-    }
-    .cert:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .cert h4 { margin: 0 0 6px; color: var(--text-header); }
-    .cert p { margin: 0; color: var(--muted); font-size: 13px; }
-
-    .timeline { display: flex; flex-direction: column; gap: 12px; }
-    .item { display: flex; gap: 12px; align-items: flex-start; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); margin-top: 6px; flex-shrink: 0; }
-    .item .body {
-      background: var(--glass);
-      padding: 12px;
-      border-radius: 10px;
-      color: var(--muted);
-      flex: 1;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-    }
-    .item .body:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
-    .item .body h4 { margin: 0 0 6px; color: var(--text-header); }
-
-    .more { display: none; margin-top: 10px; color: var(--muted); font-size: 14px; }
-
-    footer { width: min(1100px, 94%); margin: 20px auto 70px; text-align: center; color: var(--muted); }
-
-    @media (max-width: 1100px) { .grid-cert { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 680px) { main { grid-template-columns: 1fr; padding: 0 12px; } .grid-cert { grid-template-columns: 1fr; } }
-    @media print { body { background: white !important; color: black !important; } .topbar, .btn, header, footer, .sidebar { display: none !important; } main { display: block; } }
-  </style>
+  ...
 </head>
 <body>
 
@@ -242,7 +43,7 @@
 
       <div style="margin-top:12px" class="card">
         <h3><i class='bx bxs-calendar-check'></i> Availability</h3>
-        <p class="lead">Full availability to travel and complete schedule flexibility.</p>
+        <p class="lead">Full availability to travel and complete time flexibility.</p>
       </div>
 
       <div style="margin-top:12px" class="card">
@@ -274,12 +75,150 @@
     <section>
       <div class="card" style="margin-bottom:14px">
         <h3><i class='bx bxs-user'></i> About Me</h3>
-        <p class="lead">Hello! I am Alex, a technology enthusiast with a solid background as a Higher Technician in Telecommunications and Computer Systems. 
+        <p class="lead">Hello! I am Alex, a technology enthusiast with solid training as a Higher Technician in Telecommunications and Computer Systems. 
           <br>
           <br>My curiosity and eagerness to learn have led me to specialize in the exciting field of Cybersecurity, where I have acquired skills in both <strong>Blue Team</strong> and <strong>Red Team</strong>. 
           <br>
           <br>I live in Sanlúcar de Barrameda and have full availability to travel and great schedule flexibility.
           <br>
-          <br>I consider myself a person with great teamwork skills and fast learning ability, always ready to face new challenges. My goal is to continue learning to further expand my technical profile.</p>
+          <br>I consider myself a person with strong teamwork abilities and quick learning, always ready to face new challenges. My goal is to continue training to further expand my technical profile.</p>
           <br>
         </div>
+
+      <div class="card" style="margin-bottom:14px">
+        <h3 id="skills"><i class='bx bxs-brain'></i> Skills — Detail</h3>
+        <div class="skills-detailed" style="display:flex; gap:12px; flex-wrap:wrap">
+          <div style="flex:1; min-width:240px">
+            <h4 style="margin:6px 0">Cybersecurity (Blue & Red Team)</h4>
+            <ul>
+              <li>Analysis and use of tools such as: Metasploit, John the Ripper, Netcat, Hashcat, Nessus, and OWASP.</li>
+              <li>Knowledge in DFIR and forensic analysis with tools like dumpit and Magnetic RAM.</li>
+              <li>Implementation and management of SIEMs in AWS (ELK, Qradar, Splunk).</li>
+              <li>Development of awareness plans with tools like Gophish.</li>
+              <li>Knowledge of ISO 37301, 31000, 27001, 27032 standards.</li>
+            </ul>
+          </div>
+          <div style="flex:1; min-width:240px">
+            <h4 style="margin:6px 0">Systems and Networks</h4>
+            <ul>
+              <li>Administration of Linux and Windows systems.</li>
+              <li>Assembly, disassembly, and maintenance of computer hardware.</li>
+              <li>Programming and securing Cisco routers.</li>
+              <li>Handling Docker, Nginx, and virtualization systems such as EC2.</li>
+              <li>Rack cabinet wiring and management (UPS, Switches, Routers).</li>
+            </ul>
+          </div>
+          <div style="flex:1; min-width:240px">
+            <h4 style="margin:6px 0">Software and Installations</h4>
+            <ul>
+                <li>Microsoft Office: Excel, Word, PowerPoint.</li>
+                <li>2D design with Autocad.</li>
+                <li>Installation and alignment of terrestrial antennas.</li>
+                <li>Knowledge of fiber optics, coaxial cable, twisted pair (RJ45) and telephony (RJ11).</li>
+                <li>Installation of audio systems and simple electrical panels.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <h3 id="formacion"><i class='bx bxs-graduation'></i> Education</h3>
+        <div class="timeline">
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Specialization Degree in Cybersecurity (CETI)</h4>
+                    <p>Practical approach in Blue and Red team, equivalent to CEH.</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Higher Technician Degree in Telecommunications and Computer Systems</h4>
+                    <p>SAFA San Luis.</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Baccalaureate and Secondary Education</h4>
+                    <p>I.E.S. Juan Sebastián Elcano.</p>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <h3 id="certificados" style="margin-bottom:0;"><i class='bx bxs-certification'></i> Additional Training</h3>
+          <div style="display:flex; gap:8px">
+            <input class="search" id="certSearch" placeholder="Search certificate..." />
+            <button class="btn" id="filterAll">All</button>
+          </div>
+        </div>
+        <div class="grid-cert" id="certGrid" style="margin-top:12px">
+            <div class="cert"><h4>Web Application Pentesting</h4><p>31h 53m<br><span class="provider">TryHackMe</span></p></div>
+            <div class="cert"><h4>Pre Security (Learning Path)</h4><p>Hours not indicated<br><span class="provider">TryHackMe</span></p></div>
+            <div class="cert"><h4>Web Fundamentals (Learning Path)</h4><p>Hours not indicated<br><span class="provider">TryHackMe</span></p></div>
+            <div class="cert"><h4>Jr Penetration Tester (Learning Path)</h4><p>29h 05m<br><span class="provider">TryHackMe</span></p></div>
+            <div class="cert"><h4>Security Engineer (Learning Path)</h4><p>64h 30m<br><span class="provider">TryHackMe</span></p></div>
+            <div class="cert"><h4>SOC Level 1 (Learning Path)</h4><p>86h 50m<br><span class="provider">TryHackMe</span></p></div>
+            <div class="cert"><h4>Linux Environment Customization (S4vitar)</h4><p>12h<br><span class="provider">Hack4U</span></p></div>
+            <div class="cert"><h4>Introduction to Hacking</h4><p>8h<br><span class="provider">Hack4U</span></p></div>
+            <div class="cert"><h4>Introduction to Linux</h4><p>15h<br><span class="provider">Hack4U</span></p></div>
+            <div class="cert"><h4>Ethical Hacking Course</h4><p>53h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Introduction to Linux and Advanced Bash</h4><p>25h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Introduction to Docker</h4><p>18h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Network Security with Snort Course</h4><p>15h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Linux from Scratch Course</h4><p>15h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>TCP/IP Networking Fundamentals Course</h4><p>12h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Linux from Scratch</h4><p>11h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Metasploit Framework Course</h4><p>10h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Linux Shell Course</h4><p>9h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Introduction to Ethical Hacking</h4><p>8h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Hacking Tools & Forensics: Red Team</h4><p>8h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Hacking Tools Course: Blue Team</h4><p>8h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Git Course</h4><p>7h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>SSH: Essential in Modern Times</h4><p>6h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Web Hacking Course</h4><p>6h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Malware Analysis Course</h4><p>5h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>PowerShell for Beginners Course</h4><p>4h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Configuring an SSH Service in Linux</h4><p>1h<br><span class="provider">OpenWebinars</span></p></div>
+            <div class="cert"><h4>Creating Shared Directories in Linux</h4><p>1h<br><span class="provider">OpenWebinars</span></p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 id="experiencia"><i class='bx bxs-briefcase'></i> Professional Experience</h3>
+        <div class="timeline">
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Pulsia Technology</h4>
+                    <p><strong>(3 months)</strong> - Technician in repair and refurbishment of microcomputer systems.</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Rentel S.L.</h4>
+                    <p><strong>(3 months)</strong> - Internship in a network infrastructure company.</p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Alex Ihssan Hernández Agoumi. All rights reserved.
+  </footer>
+
+  <script>
+    ...
+    copyEmailBtn.textContent = 'Copied!';
+    ...
+    alert('Could not copy. Select and copy manually.');
+    ...
+  </script>
+</body>
+</html>
