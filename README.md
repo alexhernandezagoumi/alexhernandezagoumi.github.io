@@ -1,4 +1,4 @@
-# alexhernandezagoumi Index
+# Index
 Spanish Alex's Portfolio -> <a href="https://alexhernandezagoumi.github.io/portfolio/es_portfolio.html">es_portfolio.html</a>
 
 English Alex's Portfolio -> <a href="https://alexhernandezagoumi.github.io/portfolio/en_portfolio.html">en_portfolio.html</a>
