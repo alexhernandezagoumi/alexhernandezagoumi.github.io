@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alex Ihssan Hernández Agoumi — CV interactivo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <style>
+    :root {
+      --bg: #0f1724;
+      --bg-gradient-start: #071023;
+      --bg-gradient-end: #0f1724;
+      --card: #0b1220;
+      --text-main: #e6eef8;
+      --text-header: #dbeafe;
+      --muted: #9aa4b2;
+      --accent: #4f46e5;
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-2: rgba(255, 255, 255, 0.03);
+      --success: #10b981;
+      --shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+      --shadow-hover: 0 10px 35px rgba(2, 6, 23, 0.7);
+      --border-color: rgba(255, 255, 255, 0.04);
+    }
+
+    body.light-theme {
+      --bg: #f6f8fb;
+      --bg-gradient-start: #f8fafc;
+      --bg-gradient-end: #f6f8fb;
+      --card: #ffffff;
+      --text-main: #334155;
+      --text-header: #1e293b;
+      --muted: #64748b;
+      --accent: #4f46e5;
+      --glass: rgba(0, 0, 0, 0.03);
+      --glass-2: rgba(0, 0, 0, 0.04);
+      --success: #10b981;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 10px 35px rgba(0, 0, 0, 0.12);
+      --border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Inter, system-ui, Arial;
+      margin: 0;
+      background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    
+    header { position: static; display: flex; justify-content: center; }
+    
+    .topbar {
+      width: min(1100px, 94%);
+      background: var(--card);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      box-shadow: var(--shadow);
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .logo { width: 46px; height: 46px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), #06b6d4); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; }
+    .brand h1 { font-size: 16px; margin: 0; color: var(--text-header); }
+    .brand div > div { color: var(--muted); }
+    
+    .nav { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+    
+    .chip {
+      background: var(--glass);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+    }
+    .chip:hover { background: var(--glass-2); }
+    .chip i { font-size: 1.2em; }
+
+    main { width: min(1100px, 94%); margin: 28px auto 80px; display: grid; grid-template-columns: 360px 1fr; gap: 22px; }
+
+    .sidebar { border-radius: 14px; padding: 20px; }
+
+    .photo { width: 120px; height: 120px; border-radius: 20px; overflow: hidden; border: 4px solid var(--border-color); margin: 0 auto 14px; display: block; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    
+    .title { text-align: center; }
+    .title h2 { margin: 8px 0 4px; font-size: 18px; color: var(--text-header); }
+    .title p { margin: 0; color: var(--muted); font-size: 13px; }
+    
+    .contact { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .contact .row { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
+    .contact .row i { font-size: 18px; color: var(--accent); }
+    
+    .btn {
+      background: linear-gradient(90deg, var(--accent), #06b6d4);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+
+    .small { font-size: 13px; }
+
+    .card {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: background 0.3s ease;
+    }
+
+    h3, h4 { color: var(--text-header); transition: color 0.3s ease; }
+    h3 { margin: 0 0 12px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+    h3 i { color: var(--accent); }
+    
+    p.lead { color: var(--muted); margin: 0 0 8px; }
+
+    .skills { display: grid; gap: 10px; }
+    .skill .meta { flex: 1; }
+    .skill strong { color: var(--text-header); }
+    
+    .bar { height: 8px; background: var(--glass-2); border-radius: 999px; overflow: hidden; }
+    .bar > i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #22c1c3); width: 0%; border-radius: 999px; transition: width 900ms cubic-bezier(.2, .9, .2, 1); }
+    
+    .skills-detailed ul {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 6px;
+        font-size: 14px;
+        color: var(--muted);
+    }
+    .skills-detailed ul li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: flex-start;
+    }
+    .skills-detailed ul li::before {
+        content: '✓';
+        color: var(--accent);
+        font-weight: bold;
+        margin-right: 10px;
+        margin-top: 1px;
+    }
+    
+    .search { flex: 1; padding: 10px 12px; border-radius: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--muted); }
+    
+    .grid-cert { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .cert {
+      padding: 14px;
+      border-radius: 10px;
+      background: var(--glass);
+      border-left: 4px solid var(--accent);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+      cursor: default;
+    }
+    .cert:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .cert h4 { margin: 0 0 6px; color: var(--text-header); }
+    .cert p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .timeline { display: flex; flex-direction: column; gap: 12px; }
+    .item { display: flex; gap: 12px; align-items: flex-start; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); margin-top: 6px; flex-shrink: 0; }
+    .item .body {
+      background: var(--glass);
+      padding: 12px;
+      border-radius: 10px;
+      color: var(--muted);
+      flex: 1;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+    }
+    .item .body:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .item .body h4 { margin: 0 0 6px; color: var(--text-header); }
+
+    .more { display: none; margin-top: 10px; color: var(--muted); font-size: 14px; }
+
+    footer { width: min(1100px, 94%); margin: 20px auto 70px; text-align: center; color: var(--muted); }
+
+    @media (max-width: 1100px) { .grid-cert { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 680px) { main { grid-template-columns: 1fr; padding: 0 12px; } .grid-cert { grid-template-columns: 1fr; } }
+    @media print { body { background: white !important; color: black !important; } .topbar, .btn, header, footer, .sidebar { display: none !important; } main { display: block; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">AH</div>
+        <div>
+          <h1 style="font-size:14px;margin:0">Alex Ihssan Hernández Agoumi</h1>
+          <div style="font-size:12px;">Técnico Superior en Telecomunicaciones y Sistemas Informáticos — Especialización en Ciberseguridad</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="https://alexhernandezagoumi.github.io/Curriculum.pdf" class="chip" title="Descargar CV en formato PDF" download="CV_Alex_Hernandez_Agoumi.pdf" target="_blank" rel="noopener noreferrer"><i class='bx bxs-download'></i> Descargar CV</a>
+        <div class="chip" id="themeToggle" title="Cambiar tema"><i class='bx bxs-palette'></i> Tema</div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sidebar card">
+      <div class="photo"><img src="https://github.com/alexhernandezagoumi/alexhernandezagoumi.github.io/blob/main/fotoperfil.jpg?raw=true" alt="Foto de Alex Hernández Agoumi"></div>
+      <div class="title">
+        <h2>Alex Ihssan Hernández Agoumi</h2>
+        <p>Sanlúcar De Barrameda, España</p>
+      </div>
+
+      <div style="margin-top:14px" class="card">
+        <h3><i class='bx bxs-user-detail'></i> Contacto</h3>
+        <div class="contact">
+          <div class="row"><i class='bx bxs-envelope'></i> <span class="small">alexagoumi@gmail.com</span> <button class="btn" style="margin-left:auto" id="copyEmail">Copiar</button></div>
+          <div class="row"><i class='bx bxs-phone'></i> <a href="tel:+34722521696">+34 722 52 16 96</a></div>
+          <div class="row"><i class='bx bxs-map'></i> Sanlúcar De Barrameda, España</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px" class="card">
+        <h3><i class='bx bxs-calendar-check'></i> Disponibilidad</h3>
+        <p class="lead">Plena disponibilidad para viajar y completa flexibilidad horaria.</p>
+      </div>
+
+      <div style="margin-top:12px" class="card">
+        <h3><i class='bx bxs-rocket'></i> Quick skills</h3>
+        <div class="skills">
+            <div class="skill">
+                <div class="meta">
+                    <div style="display:flex;justify-content:space-between"><strong>Linux / Windows</strong><span class="small">Admin</span></div>
+                    <div class="bar" data-pct="88"><i></i></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="meta">
+                    <div style="display:flex;justify-content:space-between"><strong>Ciberseguridad</strong><span class="small">Blue & Red Team</span></div>
+                    <div class="bar" data-pct="84"><i></i></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="meta">
+                    <div style="display:flex;justify-content:space-between"><strong>Redes & Infra</strong><span class="small">Cisco / Racks</span></div>
+                    <div class="bar" data-pct="78"><i></i></div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <section>
+      <div class="card" style="margin-bottom:14px">
+        <h3><i class='bx bxs-user'></i> Sobre Mí</h3>
+        <p class="lead">¡Hola! Soy Alex, un apasionado de la tecnología con una sólida formación como Técnico Superior en Telecomunicaciones y Sistemas Informáticos. 
+          <br>
+          <br>Mi curiosidad y ganas de aprender me han llevado a especializarme en el emocionante campo de la Ciberseguridad, donde he adquirido competencias tanto en <strong>Blue Team</strong> como en <strong>Red Team</strong>. 
+          <br>
+          <br>Resido en Sanlúcar de Barrameda y tengo plena disponibilidad para viajar y una gran flexibilidad horaria.
+          <br>
+          <br>Me considero una persona con gran capacidad para el trabajo en equipo y un aprendizaje rápido, siempre listo para afrontar nuevos retos. Mi objetivo es continuar formándome para ampliar aún más mi perfil técnico.</p>
+          <br>
+        </div>
+
+      <div class="card" style="margin-bottom:14px">
+        <h3 id="skills"><i class='bx bxs-brain'></i> Skills — Detalle</h3>
+        <div class="skills-detailed" style="display:flex; gap:12px; flex-wrap:wrap">
+          <div style="flex:1; min-width:240px">
+            <h4 style="margin:6px 0">Ciberseguridad (Blue & Red Team)</h4>
+            <ul>
+              <li>Análisis y uso de herramientas como: Metasploit, John the Ripper, Netcat, Hashcat Nessus, y OWASP.</li>
+              <li>Conocimientos en DFIR y análisis forense con herramientas como dumpit y Magnetic RAM.</li>
+              <li>Implementación y gestión de SIEMs en AWS (ELK, Qradar, Splunk).</li>
+              <li>Desarrollo de planes de concienciación con herramientas como Gophish.</li>
+              <li>Conocimientos en normativas ISO 37301, 31000, 27001, 27032.</li>
+            </ul>
+          </div>
+          <div style="flex:1; min-width:240px">
+            <h4 style="margin:6px 0">Sistemas y Redes</h4>
+            <ul>
+              <li>Administración de sistemas Linux y Windows.</li>
+              <li>Montaje, desmontaje y mantenimiento de hardware informático.</li>
+              <li>Programación y securización de routers Cisco.</li>
+              <li>Manejo de Docker, Nginx y sistemas de virtualización como EC2.</li>
+              <li>Panelado y gestión de armarios Rack (SAI, Switches, Routers).</li>
+            </ul>
+          </div>
+          <div style="flex:1; min-width:240px">
+            <h4 style="margin:6px 0">Software e Instalaciones</h4>
+            <ul>
+                <li>Microsoft Office: Excel, Word, PowerPoint.</li>
+                <li>Diseño 2D con Autocad.</li>
+                <li>Instalación y orientación de antenas terrestres.</li>
+                <li>Conocimientos en fibra óptica, cable coaxial, par trenzado (RJ45) y telefonía (RJ11).</li>
+                <li>Instalación de sistemas de audio y cuadros eléctricos simples.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <h3 id="formacion"><i class='bx bxs-graduation'></i> Formación</h3>
+        <div class="timeline">
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Título de especialización en Ciberseguridad (CETI)</h4>
+                    <p>Enfoque práctico en Blue y Red team, equivalente al CEH.</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Título Técnico Superior en Telecomunicaciones y Sistemas Informáticos</h4>
+                    <p>SAFA San Luis.</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Bachillerato y Educación Secundaria</h4>
+                    <p>I.E.S. Juan Sebastián Elcano.</p>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <h3 id="certificados" style="margin-bottom:0;"><i class='bx bxs-certification'></i> Formación Complementaria</h3>
+          <div style="display:flex; gap:8px">
+            <input class="search" id="certSearch" placeholder="Buscar certificado..." />
+            <button class="btn" id="filterAll">Todos</button>
+          </div>
+        </div>
+        <div class="grid-cert" id="certGrid" style="margin-top:12px">
+            <div class="cert"><h4>Web Application Pentesting</h4><p>31h 53m<br><span class="provider">TryHackMe</span></p></div>
+             <div class="cert"><h4>Pre Security (Learning Path)</h4><p>Horas no indicadas<br><span class="provider">TryHackMe</span></p></div>
+             <div class="cert"><h4>Web Fundamentals (Learning Path)</h4><p>Horas no indicadas<br><span class="provider">TryHackMe</span></p></div>
+             <div class="cert"><h4>Jr Penetration Tester (Learning Path)</h4><p>29h 05m<br><span class="provider">TryHackMe</span></p></div>
+             <div class="cert"><h4>Security Engineer (Learning Path)</h4><p>64h 30m<br><span class="provider">TryHackMe</span></p></div>
+             <div class="cert"><h4>SOC Level 1 (Learning Path)</h4><p>86h 50m<br><span class="provider">TryHackMe</span></p></div>
+             <div class="cert"><h4>Personalización de entorno en Linux (S4vitar)</h4><p>12h<br><span class="provider">Hack4U</span></p></div>
+             <div class="cert"><h4>Introducción al Hacking</h4><p>8h<br><span class="provider">Hack4U</span></p></div>
+             <div class="cert"><h4>Introducción a Linux</h4><p>15h<br><span class="provider">Hack4U</span></p></div>
+             <div class="cert"><h4>Curso de Hacking Ético</h4><p>53h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Introducción a Linux y Bash Avanzado</h4><p>25h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Introducción a Docker</h4><p>18h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de Seguridad en Redes con Snort</h4><p>15h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso para aprender Linux desde cero</h4><p>15h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de fundamentos de Redes: TCP/IP</h4><p>12h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Linux desde cero</h4><p>11h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de Metasploit Framework</h4><p>10h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de Shell en Linux</h4><p>9h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Introducción a Ethical Hacking</h4><p>8h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Hacking Tools & Forensic: Red Team</h4><p>8h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de Hacking Tools: Blue Team</h4><p>8h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de Git</h4><p>7h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>SSH: imprescindible en tiempos modernos</h4><p>6h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de Hacking web</h4><p>6h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de análisis de malware</h4><p>5h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Curso de PowerShell para principiantes</h4><p>4h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Configuración de un servicio SSH en Linux</h4><p>1h<br><span class="provider">OpenWebinars</span></p></div>
+             <div class="cert"><h4>Creación de directorios compartidos en Linux</h4><p>1h<br><span class="provider">OpenWebinars</span></p></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 id="experiencia"><i class='bx bxs-briefcase'></i> Experiencia Profesional</h3>
+        <div class="timeline">
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Pulsia Technology</h4>
+                    <p><strong>(3 meses)</strong> - Técnico en reparación y reacondicionamiento de sistemas microinformáticos.</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="dot"></div>
+                <div class="body">
+                    <h4>Rentel S.L.</h4>
+                    <p><strong>(3 meses)</strong> - Prácticas en empresa de infraestructuras de redes.</p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Alex Ihssan Hernández Agoumi. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.bar').forEach(b => {
+        const pct = b.getAttribute('data-pct') || 60;
+        setTimeout(() => b.querySelector('i').style.width = pct + '%', 80);
+      });
+
+      const certs = Array.from(document.querySelectorAll('.cert'));
+      const search = document.getElementById('certSearch');
+      const filterAllBtn = document.getElementById('filterAll');
+      
+      const filterCerts = () => {
+        const q = search.value.toLowerCase().trim();
+        certs.forEach(c => {
+          const text = c.textContent.toLowerCase();
+          c.style.display = text.includes(q) ? 'block' : 'none';
+        });
+      };
+      
+      search.addEventListener('input', filterCerts);
+      filterAllBtn.addEventListener('click', () => {
+        search.value = '';
+        filterCerts();
+      });
+
+      const copyEmailBtn = document.getElementById('copyEmail');
+      copyEmailBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('alexagoumi@gmail.com');
+          const originalText = copyEmailBtn.textContent;
+          copyEmailBtn.textContent = '¡Copiado!';
+          copyEmailBtn.style.background = 'var(--success)';
+          setTimeout(() => {
+            copyEmailBtn.textContent = originalText;
+            copyEmailBtn.style.background = ''; 
+          }, 2000);
+        } catch (e) {
+          alert('No se pudo copiar. Selecciona y copia manualmente.');
+        }
+      });
+
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+
+      const applyTheme = (theme) => {
+        if (theme === 'light') {
+            body.classList.add('light-theme');
+        } else {
+            body.classList.remove('light-theme');
+        }
+      };
+
+      themeToggle.addEventListener('click', () => {
+        const isLight = body.classList.toggle('light-theme');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+
+    });
+  </script>
+</body>
+</html>
